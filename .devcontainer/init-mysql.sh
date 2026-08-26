@@ -31,6 +31,7 @@ echo "Configurando banco..."
 #CHARACTER e COLLATE define a codificaçao dos caracteres
 #CREATE USER - cria um usuario
 #GRANT - atribui permissoes para o usuario
+CREATE DATABASEIF NOT EXISTS ecommece
 mysql <<EOF
 CREATE DATABASE IF NOT EXISTS ecommerce
 CHARACTER SET utf8mb4
