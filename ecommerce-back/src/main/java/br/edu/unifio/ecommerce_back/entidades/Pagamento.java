@@ -30,4 +30,6 @@ public class Pagamento {
 
     @OneToOne
     private Pedido pedido;
+
+    
 }
