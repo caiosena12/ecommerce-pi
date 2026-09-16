@@ -20,6 +20,7 @@ public class ItemPedidoRepositorioTest {
 
         assertNotNull(itemPedido);
         assertEquals(Short.valueOf("2"), itemPedido.getPedido().getId());
+        
     }
 
 
