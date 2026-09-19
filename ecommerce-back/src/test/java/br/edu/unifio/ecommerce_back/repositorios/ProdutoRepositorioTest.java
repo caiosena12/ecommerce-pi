@@ -2,9 +2,11 @@ package br.edu.unifio.ecommerce_back.repositorios;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -51,6 +53,15 @@ public class ProdutoRepositorioTest {
         produto.setEstoque(Short.parseShort("1"));
         produto.setPreco(new BigDecimal("1.00"));
         produto.setCategoria(categoriaRepositorio.findById(Short.parseShort("1")).orElseThrow());
+        produtoRepositorio.save(produto);
+
+        Integer id = produto.getId();
+
+        produtoRepositorio.deleteById(id);
+
+        Optional<Produtos> produtoExcluido = produtoRepositorio.findById(id);
+
+        assertTrue(produtoExcluido.isEmpty());
     }
 
     @Test
