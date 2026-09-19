@@ -17,7 +17,7 @@ import lombok.Setter;
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Short id;
+    private Integer id;
     private LocalDateTime data;
     private String status;
     private BigDecimal valorTotal;
