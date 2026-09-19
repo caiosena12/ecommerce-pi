@@ -17,6 +17,7 @@ import org.springframework.data.domain.Sort;
 public class ProdutoRepositorioTest {
     @Autowired 
     private ProdutoRepositorio produtoRepositorio;
+    @Autowired
     CategoriaRepositorio categoriaRepositorio;
 
     @Test
@@ -52,4 +53,23 @@ public class ProdutoRepositorioTest {
         produto.setCategoria(categoriaRepositorio.findById(Short.parseShort("1")).orElseThrow());
     }
 
+    @Test
+    @Order (4)
+    public void deveAlterarUmProdutoPorId(){
+
+        Produtos produto = new Produtos();
+
+        produto.setNome("Nome Teste");
+        produto.setDescricao("Descrição teste");
+        produto.setEstoque(Short.parseShort("1"));
+        produto.setPreco(new BigDecimal("1.00"));
+        produto.setCategoria(categoriaRepositorio.findById(Short.parseShort("1")).orElseThrow());
+        produtoRepositorio.save(produto);
+        produto.setNome("Nome Alterado");
+        produtoRepositorio.save(produto);
+
+        Produtos produtoBanco = produtoRepositorio.findById(produto.getId()).orElseThrow();
+
+        assertEquals("Nome Alterado", produtoBanco.getNome());
+    }
 }
